@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="fc2cc85d-bcec-474c-9bdf-1dcea3963d1e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="linter-testFlow-badName" doc:id="03e24883-14ce-44db-85b0-910e381ba92e" >
+		<scheduler doc:name="Scheduler" doc:id="ea7c208e-7846-443b-955a-cb91ebcdb710" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</scheduler>
+		<set-payload value='#[{"a":0,"b":1&#10;}]' doc:name="Set Payload" doc:id="e811940d-2428-49a9-a841-05e5d4ae4f85" />
+		<set-payload value='#[{"a":0,"b":1}]' doc:name="Set Payload1" doc:id="353096a3-a112-47e0-8784-67c052fa6302" />
+		<logger level="INFO" doc:name="Logger" doc:id="091218b9-a7b5-409a-9bae-f3eb5550414d" />
+	</flow>
+	<flow name="linter-test-flow-goodname" doc:id="0d036d0c-672c-488e-8220-9aed0c3ed581" >
+		<scheduler doc:name="Scheduler" doc:id="01a05d2f-c4c8-41c2-9ef1-d1eec333bd51" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="Logger" doc:id="250f7d0f-5cac-402c-8d64-8bbc33e4827e" />
+	</flow>
+	<flow name="linter-http-test" doc:id="e02ae1a7-6eba-495f-983f-a71d813160d8" >
+		<http:listener doc:name="Listener" doc:id="523c90ca-f8f2-4ed3-9166-7dbd496cbe96" config-ref="HTTP_Listener_config" path="/"/>
+		<logger level="INFO" doc:name="Logger" doc:id="d07b968c-0469-4ac0-b28e-476ed93f93e3" />
+	</flow>
+</mule>

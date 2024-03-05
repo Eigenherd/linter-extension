@@ -2,11 +2,22 @@
 
 ## Overview
 
-This linter provides static code analysis for Mule projects, to assist with finding bugs and ensuring the code quality standards of Eigenherd.
+This is an extension for the `mule-linter-maven-plugin`. It provides static code analysis for Mule projects, to assist with finding bugs and ensuring the code quality standards of Eigenherd.
 
 ## Usage
 
 ### Installation
+Copy the following plugin snippet from [linter-test/pom.xml](linter-test/pom.xml) into your pom.xml:
+```xml
+<!-- Linter Plugin -->
+<plugin>
+    <groupId>com.avioconsulting.mule</groupId>
+    <artifactId>mule-linter-maven-plugin</artifactId>
+    <version>1.1.0</version>
+    ...
+</plugin>
+```
+
 See also the example Mule project [linter-test](linter-test).
 
 ### Running the linter
@@ -26,7 +37,7 @@ For a comprehensive list of available and recommended rules see Quip.
 
 ### Defining new rules
 
-...
+See [src/main/java/](src/main/java/) for examples.
 
 ### Testing
 Exeuting `mvn test` will run unit tests against the example Mule project [linter-test](linter-test).
